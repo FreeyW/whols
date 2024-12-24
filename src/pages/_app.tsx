@@ -32,6 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="tags" content={siteKeywords} />
         <meta name="keywords" content={siteKeywords} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script defer data-domain="w.is" src="https://stat.re/js/script.js"></script>
       </Head>
       <Toaster />
       <ThemeProvider
