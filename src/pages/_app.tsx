@@ -18,7 +18,7 @@ const siteDescription = strEnv(
 );
 const siteKeywords = strEnv(
   "NEXT_PUBLIC_SITE_KEYWORDS",
-  "Whois, Lookup, Tool, Next Whois UI",
+  "Whois, Lookup, Tool, W.is Whois UI",
 );
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -43,7 +43,7 @@ export default function App({ Component, pageProps }: AppProps) {
       >
         <PWAInstaller
           manifest-url="/manifest.json"
-          name="Next Whois UI"
+          name="W.is Whois UI"
           description="🧪 Your Next Generation Of Whois Lookup Tool With Modern UI. Support Domain/IPv4/IPv6/ASN/CIDR Whois Lookup And Powerful Features."
         />
         <div className={cn(`relative w-full h-full`, inter.className)}>
