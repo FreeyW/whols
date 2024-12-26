@@ -725,7 +725,6 @@ export default function Lookup({ data, target }: Props) {
           >
             W.is Whois
           </Link>
-          <Badge variant={`outline`}>v{VERSION}</Badge>
         </div>
       </main>
     </ScrollArea>
