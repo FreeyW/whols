@@ -191,12 +191,7 @@ function ResultTable({ result, target }: ResultTableProps) {
     result && (
       <table className={`w-full text-base mb-4 whitespace-pre-wrap`}>
         <tbody>
-          <Row 
-            name={`Name`} 
-            value={result.domain || target.toUpperCase()} 
-            likeLink
-            hidden={result.domain || target.toUpperCase()} 
-            />
+          <Row name={`Name`} value={result.domain || target.toUpperCase()} />
           <Row name={`Status`} value={<StatusComp />} />
           <Row
             name={`Registrar`}
