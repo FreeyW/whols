@@ -128,7 +128,16 @@ function ResultTable({ result, target }: ResultTableProps) {
             }
           }}
         >
-          {value}
+          {value && (
+  <a 
+    href={value.startsWith('http') ? value : `http://${value}`} 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className="text-blue-500 hover:underline"
+  >
+    {value}
+  </a>
+)}
           {children}
         </td>
       </tr>
