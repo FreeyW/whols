@@ -128,22 +128,6 @@ function ResultTable({ result, target }: ResultTableProps) {
             }
           }}
         >
-          <td
-  className={cn(
-    `py-1 pl-2 text-left text-primary whitespace-pre-wrap break-all`,
-    likeLink && `cursor-pointer hover:underline`,
-    (value?.startsWith('http://') || value?.startsWith('https://')) && 'text-blue-500 underline'
-  )}
-  onClick={() => {
-    if (likeLink || value?.startsWith('http://') || value?.startsWith('https://')) {
-      window.open(
-        value.startsWith('http') ? value : `http://${value}`,
-        "_blank",
-        "noopener,noreferrer"
-      );
-    }
-  }}
->
           {value}
           {children}
         </td>
