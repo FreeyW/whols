@@ -331,28 +331,6 @@ const trRegex: DomainRegex = {
 };
 
 export function getDomainRegex(domain: string): DomainRegex {
-    // 检查Google的新gTLDs
-  if (
-    domain.endsWith(".ing") ||
-    domain.endsWith(".app") ||
-    domain.endsWith(".dev") ||
-    domain.endsWith(".page") ||
-    domain.endsWith(".new")
-  ) {
-    return newGtldRegex;
-  }
-  
-  // 检查Amazon的新gTLDs
-  if (
-    domain.endsWith(".now") ||
-    domain.endsWith(".aws") ||
-    domain.endsWith(".buy") ||
-    domain.endsWith(".book") ||
-    domain.endsWith(".bot")
-  ) {
-    return newGtldRegex;
-  }
-  
   if (
     domain.endsWith(".com") ||
     domain.endsWith(".net") ||
