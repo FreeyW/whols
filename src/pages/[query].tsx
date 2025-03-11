@@ -265,21 +265,51 @@ function ResultTable({ result, target }: ResultTableProps) {
             hidden={!result.whoisServer || result.whoisServer === "Unknown"}
           />
 
-          <Row
-            name={`Creation Date`}
-            value={toReadableISODate(result.creationDate)}
-            hidden={!result.creationDate || result.creationDate === "Unknown"}
-          />
-          <Row
-            name={`Updated Date`}
-            value={toReadableISODate(result.updatedDate)}
-            hidden={!result.updatedDate || result.updatedDate === "Unknown"}
-          />
-          <Row
-            name={`Expiration Date`}
-            value={toReadableISODate(result.expirationDate)}
-            hidden={!result.expirationDate || result.expirationDate === "Unknown"}
-          />
+<Row
+  name={`Creation Date`}
+  value={
+    <>
+      {toReadableISODate(result.creationDate).dateTime}{' '}
+      {toReadableISODate(result.creationDate).timeZone && (
+        <span className="inline-flex group flex-row whitespace-nowrap flex-nowrap items-center m-0.5 cursor-pointer px-1 py-0.5 border rounded text-xs">
+          {toReadableISODate(result.creationDate).timeZone}
+        </span>
+      )}
+    </>
+  }
+  hidden={!result.creationDate || result.creationDate === "Unknown"}
+/>
+
+<Row
+  name={`Updated Date`}
+  value={
+    <>
+      {toReadableISODate(result.updatedDate).dateTime}{' '}
+      {toReadableISODate(result.updatedDate).timeZone && (
+        <span className="inline-flex group flex-row whitespace-nowrap flex-nowrap items-center m-0.5 cursor-pointer px-1 py-0.5 border rounded text-xs">
+          {toReadableISODate(result.updatedDate).timeZone}
+        </span>
+      )}
+    </>
+  }
+  hidden={!result.updatedDate || result.updatedDate === "Unknown"}
+/>
+
+<Row
+  name={`Expiration Date`}
+  value={
+    <>
+      {toReadableISODate(result.expirationDate).dateTime}{' '}
+      {toReadableISODate(result.expirationDate).timeZone && (
+        <span className="inline-flex group flex-row whitespace-nowrap flex-nowrap items-center m-0.5 cursor-pointer px-1 py-0.5 border rounded text-xs">
+          {toReadableISODate(result.expirationDate).timeZone}
+        </span>
+      )}
+    </>
+  }
+  hidden={!result.expirationDate || result.expirationDate === "Unknown"}
+/>
+          
           <Row
             name={`Registrant Organization`}
             value={result.registrantOrganization}
