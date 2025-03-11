@@ -15,29 +15,12 @@ export function getLookupOptions(domain: string) {
   if (domain.endsWith('.ing')) {
     options.server = 'whois.nic.google';
   }
-  else if (domain.endsWith('.now')) {
-    options.server = 'whois.nic.now';
-  }
   else if (domain.endsWith('.page')) {
     options.server = 'whois.nic.google';
   }
   else if (domain.endsWith('.new')) {
     options.server = 'whois.nic.google';
   }
-  // Amazon的域名
-  else if (domain.endsWith('.aws')) {
-    options.server = 'whois.nic.aws';
-  }
-  else if (domain.endsWith('.buy')) {
-    options.server = 'whois.nic.amazon';
-  }
-  else if (domain.endsWith('.book')) {
-    options.server = 'whois.nic.amazon';
-  }
-  else if (domain.endsWith('.bot')) {
-    options.server = 'whois.nic.amazon';
-  }
-  // 其他常见新gTLD
   else if (domain.endsWith('.shop')) {
     options.server = 'whois.nic.shop';
   }
