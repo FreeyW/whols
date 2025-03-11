@@ -63,6 +63,17 @@ export default function App({ Component, pageProps }: AppProps) {
               }}
             />
             <div className={`grow`} />
+            <Link href="https://t.im" target="_blank" className="mr-2">
+              <Button variant={`outline`} size={`icon`} tapEnabled>
+                <img 
+                  src="https://favicon.is/t.im" 
+                  alt="IP Lookup" 
+                  className="w-5 h-5" 
+                  title="T.im Shortest URL shortener"
+                />
+              </Button>
+            </Link>
+
             <Link href="https://ip.im" target="_blank" className="mr-2">
               <Button variant={`outline`} size={`icon`} tapEnabled>
                 <img 
@@ -74,7 +85,17 @@ export default function App({ Component, pageProps }: AppProps) {
               </Button>
             </Link>
 
-            {/* DNS lookup button */}
+            <Link href="https://mr.email" target="_blank" className="mr-2">
+              <Button variant={`outline`} size={`icon`} tapEnabled>
+                <img 
+                  src="https://favicon.is/mr.email" 
+                  alt="IP Lookup" 
+                  className="w-5 h-5" 
+                  title="Temporary email service"
+                />
+              </Button>
+            </Link>
+
             <Link href="https://dns.is" target="_blank" className="mr-2">
               <Button variant={`outline`} size={`icon`} tapEnabled>
                 <img 
@@ -82,6 +103,28 @@ export default function App({ Component, pageProps }: AppProps) {
                   alt="DNS Lookup" 
                   className="w-5 h-5" 
                   title="DNS lookup"
+                />
+              </Button>
+            </Link>
+
+            <Link href="https://pdf.is" target="_blank" className="mr-2">
+              <Button variant={`outline`} size={`icon`} tapEnabled>
+                <img 
+                  src="https://favicon.is/pdf.is" 
+                  alt="DNS Lookup" 
+                  className="w-5 h-5" 
+                  title="Free online PDF tools"
+                />
+              </Button>
+            </Link>
+
+            <Link href="https://trueurl.com" target="_blank" className="mr-2">
+              <Button variant={`outline`} size={`icon`} tapEnabled>
+                <img 
+                  src="https://favicon.is/trueurl.com" 
+                  alt="DNS Lookup" 
+                  className="w-5 h-5" 
+                  title="The free URL redirect checker"
                 />
               </Button>
             </Link>
