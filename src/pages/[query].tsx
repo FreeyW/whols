@@ -269,25 +269,17 @@ function ResultTable({ result, target }: ResultTableProps) {
             name={`Creation Date`}
             value={toReadableISODate(result.creationDate)}
             hidden={!result.creationDate || result.creationDate === "Unknown"}
-          >
-            <InfoText content={`UTC`} />
-          </Row>
+          />
           <Row
             name={`Updated Date`}
             value={toReadableISODate(result.updatedDate)}
             hidden={!result.updatedDate || result.updatedDate === "Unknown"}
-          >
-            <InfoText content={`UTC`} />
-          </Row>
+          />
           <Row
             name={`Expiration Date`}
             value={toReadableISODate(result.expirationDate)}
-            hidden={
-              !result.expirationDate || result.expirationDate === "Unknown"
-            }
-          >
-            <InfoText content={`UTC`} />
-          </Row>
+            hidden={!result.expirationDate || result.expirationDate === "Unknown"}
+          />
           <Row
             name={`Registrant Organization`}
             value={result.registrantOrganization}
