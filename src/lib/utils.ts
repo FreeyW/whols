@@ -90,7 +90,24 @@ export function toSearchURI(query: string) {
 
 export function toReadableISODate(date: string | null) {
   if (!date) return "Unknown";
-  return date.replace("T", " ").replace("Z", "").replace(".000", "");
+  
+  try {
+    const dateObj = new Date(date);
+    
+    const localDate = dateObj.toLocaleString(undefined, {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      timeZoneName: 'short' 
+    });
+    
+    return localDate;
+  } catch (e) {
+    return date.replace("T", " ").replace("Z", "").replace(".000", "");
+  }
 }
 
 export function filterRepeat<T>(arr: T[]): T[] {
