@@ -63,7 +63,6 @@ export default function App({ Component, pageProps }: AppProps) {
               }}
             />
             <div className={`grow`} />
-            <ThemeToggle />
             <Link href="https://ip.im" target="_blank" className="mr-2">
               <Button variant={`outline`} size={`icon`} tapEnabled>
                 <img 
@@ -102,6 +101,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 </svg>
               </Button>
             </Link>
+            <ThemeToggle />
           </div>
           <Component {...pageProps} />
         </div>
