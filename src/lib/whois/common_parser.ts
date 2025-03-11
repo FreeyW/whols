@@ -104,6 +104,12 @@ export function analyzeWhois(data: string): WhoisAnalyzeResult {
       case "domain status":
         result.status.push(analyzeDomainStatus(value));
         break;
+      case "eppstatus":
+        result.status.push(analyzeDomainStatus(value));
+        break;
+      case "epp status":
+        result.status.push(analyzeDomainStatus(value));
+        break;
       case "name server":
         result.nameServers.push(value);
         break;
@@ -208,6 +214,11 @@ export function analyzeWhois(data: string): WhoisAnalyzeResult {
       result.registrar === "Unknown"
     ) {
       result.registrar = value;
+    } else if (
+      includeArgs(key, "epp", "status") && 
+      !key.includes("domain")
+    ) {
+      result.status.push(analyzeDomainStatus(value));
     } else if (
       includeArgs(key, "contact email") &&
       result.registrantEmail === "Unknown"
