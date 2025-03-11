@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --background-light: 0 0% 100%;
+    --background: 0 0% 96%;
+    --background-light: 0 0% 96%;
     --background-dark: 0 0% 0%;
     --background-hover: 5 12% 100%;
     --background-container: 0, 0%, 97%, 0.8;
