@@ -33,14 +33,16 @@ export default function Home() {
   return (
     <main className={"w-full h-full grid place-items-center p-4 md:p-6"}>
       <div className={"flex flex-col items-center w-full h-fit max-w-[568px]"}>
-        <h1
-          className={
-            "text-lg md:text-2xl lg:text-3xl font-bold flex flex-row items-center select-none"
-          }
-        >
-          <Search className={`w-4 h-4 md:w-6 md:h-6 mr-1 md:mr-1.5 shrink-0`} />
-          Whois Lookup
-        </h1>
+        <Link href="/" className="hover:opacity-80 transition-opacity">
+          <h1
+            className={
+              "text-lg md:text-2xl lg:text-3xl font-bold flex flex-row items-center select-none cursor-pointer"
+            }
+          >
+            <Search className={`w-4 h-4 md:w-6 md:h-6 mr-1 md:mr-1.5 shrink-0`} />
+            Whois Lookup
+          </h1>
+        </Link>
         <div
           className={"flex flex-row items-center flex-wrap justify-center mt-1"}
         >
