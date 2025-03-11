@@ -215,11 +215,6 @@ export function analyzeWhois(data: string): WhoisAnalyzeResult {
     ) {
       result.registrar = value;
     } else if (
-      includeArgs(key, "epp", "status") && 
-      !key.includes("domain")
-    ) {
-      result.status.push(analyzeDomainStatus(value));
-    } else if (
       includeArgs(key, "contact email") &&
       result.registrantEmail === "Unknown"
     ) {
