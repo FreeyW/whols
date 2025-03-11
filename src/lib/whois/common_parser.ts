@@ -11,6 +11,12 @@ function analyzeDomainStatus(status: string, isEppStatus: boolean = false): Doma
   let url = segments.slice(1).join(" ");
 
   url.startsWith("(") && url.endsWith(")") && (url = url.slice(1, -1));
+  if (url.startsWith("(") && url.endsWith(")")) {
+   return {
+     status: statusCode + " " + url,
+     url: "", 
+    };
+  }
   
   if (isEppStatus) {
     return {
