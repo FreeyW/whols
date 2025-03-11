@@ -69,8 +69,35 @@ export async function lookupWhois(domain: string): Promise<WhoisResult> {
   const startTime = Date.now();
 
   try {
-    const data = await getLookupRawWhois(domain, getLookupOptions(domain));
+    const options = getLookupOptions(domain);
+    const data = await getLookupRawWhois(domain, options);
     const endTime = Date.now();
+    
+    // 检查是否是"refer"格式（IANA格式），如果是则尝试二次查询
+    if (data.includes('% IANA WHOIS server') && data.includes('refer:')) {
+      const referMatch = data.match(/refer:\s+([^\s]+)/);
+      if (referMatch && referMatch[1]) {
+        const referServer = referMatch[1].trim();
+        console.log(`[whois] Redirecting to refer server: ${referServer}`);
+        
+        try {
+          const referOptions = { ...options, server: referServer };
+          const referData = await getLookupRawWhois(domain, referOptions);
+          const endTime = Date.now();
+          const parsed = parseWhoisData(referData, domain);
+          
+          return {
+            status: true,
+            time: countDuration(startTime, endTime),
+            result: parsed,
+          };
+        } catch (referErr) {
+          console.error(`[whois] Refer server lookup failed:`, referErr);
+          // 如果二次查询失败，使用原始数据
+        }
+      }
+    }
+    
     const parsed = parseWhoisData(data, domain);
 
     return {
