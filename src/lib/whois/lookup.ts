@@ -16,7 +16,7 @@ export function getLookupOptions(domain: string) {
     options.server = 'whois.nic.google';
   }
   else if (domain.endsWith('.now')) {
-    options.server = 'whois.nic.amazon';
+    options.server = 'whois.nic.now';
   }
   else if (domain.endsWith('.page')) {
     options.server = 'whois.nic.google';
