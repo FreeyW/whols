@@ -5,13 +5,23 @@ import {
 } from "@/lib/whois/types";
 import { includeArgs } from "@/lib/utils";
 
-function analyzeDomainStatus(status: string): DomainStatusProps {
+function analyzeDomainStatus(status: string, isEppStatus: boolean = false): DomainStatusProps {
   const segments = status.split(" ");
+  let statusCode = segments[0];
   let url = segments.slice(1).join(" ");
 
   url.startsWith("(") && url.endsWith(")") && (url = url.slice(1, -1));
+  
+  // 如果是EPP状态，或者状态代码符合EPP格式(如clientTransferProhibited)，生成ICANN链接
+  if (isEppStatus || /^(client|server)[A-Z][a-z]+[A-Z][a-z]+/.test(statusCode)) {
+    return {
+      status: statusCode,
+      url: `https://icann.org/epp#${statusCode}`,
+    };
+  }
+  
   return {
-    status: segments[0],
+    status: statusCode,
     url,
   };
 }
@@ -105,10 +115,10 @@ export function analyzeWhois(data: string): WhoisAnalyzeResult {
         result.status.push(analyzeDomainStatus(value));
         break;
       case "eppstatus":
-        result.status.push(analyzeDomainStatus(value));
+        result.status.push(analyzeDomainStatus(value, true));
         break;
       case "epp status":
-        result.status.push(analyzeDomainStatus(value));
+        result.status.push(analyzeDomainStatus(value, true));
         break;
       case "name server":
         result.nameServers.push(value);
