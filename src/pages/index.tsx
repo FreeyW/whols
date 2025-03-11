@@ -86,18 +86,18 @@ export default function Home() {
           </div>
         </div>
         <div className={"relative flex flex-row items-center w-full mt-2"}>
-          <Input
-            className={`w-full text-center transition-all duration-300 hover:shadow`}
-            placeholder={`domain name (e.g. google.com, 8.8.8.8)`}
-            value={domain}
-            onChange={(e) => setDomain(e.target.value)}
-            onKeyDown={(e) => {
-              if (isEnter(e) && domain.length > 0) {
-                goStage(domain);
-                window.location.href = toSearchURI(domain);
-              }
-            }}
-          />
+        <Input
+          className={`w-full text-center transition-all duration-300 hover:shadow bg-white`}
+          placeholder={`domain name (e.g. google.com, 8.8.8.8)`}
+          value={domain}
+          onChange={(e) => setDomain(e.target.value)}
+          onKeyDown={(e) => {
+            if (isEnter(e) && domain.length > 0) {
+              goStage(domain);
+              window.location.href = toSearchURI(domain);
+            }
+          }}
+        />
           <Link
             href={toSearchURI(domain)}
             className={`absolute right-0`}
