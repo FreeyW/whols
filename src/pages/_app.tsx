@@ -11,7 +11,7 @@ import { strEnv } from "@/lib/env";
 import { inter } from "@/lib/fonts";
 import PWAInstaller, { usePWAInstaller } from "@/components/PWAInstaller";
 
-const siteTitle = strEnv("NEXT_PUBLIC_SITE_TITLE", "W.is Whois UI");
+const siteTitle = strEnv("NEXT_PUBLIC_SITE_TITLE", "W.is Whois Lookup Tool");
 const siteDescription = strEnv(
   "NEXT_PUBLIC_SITE_DESCRIPTION",
   "🧪 Your Next Generation Of Whois Lookup Tool With Modern UI. Support Domain/IPv4/IPv6/ASN/CIDR Whois Lookup And Powerful Features.",
