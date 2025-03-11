@@ -700,17 +700,17 @@ export default function Lookup({ data, target }: Props) {
             Please enter a domain name to lookup
           </p>
           <div className={"relative flex flex-row items-center w-full mt-2"}>
-            <Input
-              className={`w-full text-center transition-all duration-300 hover:shadow`}
-              placeholder={`domain name (e.g. google.com, 8.8.8.8)`}
-              value={inputDomain}
-              onChange={(e) => setInputDomain(e.target.value)}
-              onKeyDown={(e) => {
-                if (isEnter(e)) {
-                  goStage(inputDomain);
-                }
-              }}
-            />
+          <Input
+            className={`w-full text-center transition-all duration-300 hover:shadow bg-white`}
+            placeholder={`domain name (e.g. google.com, 8.8.8.8)`}
+            value={inputDomain}
+            onChange={(e) => setInputDomain(e.target.value)}
+            onKeyDown={(e) => {
+              if (isEnter(e)) {
+                goStage(inputDomain);
+              }
+            }}
+          />
             <Button
               size={`icon`}
               variant={`outline`}
