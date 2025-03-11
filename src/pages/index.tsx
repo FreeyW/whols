@@ -89,7 +89,7 @@ export default function Home() {
         </div>
         <div className={"relative flex flex-row items-center w-full mt-2"}>
         <Input
-          className={`w-full text-center transition-all duration-300 hover:shadow bg-white dark:bg-gray-800`}
+          className={`w-full text-center transition-all duration-300 hover:shadow bg-white dark:bg-slate-800`}
           placeholder={`domain name (e.g. google.com, 8.8.8.8)`}
           value={domain}
           onChange={(e) => setDomain(e.target.value)}
