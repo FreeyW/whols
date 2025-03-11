@@ -64,6 +64,28 @@ export default function App({ Component, pageProps }: AppProps) {
             />
             <div className={`grow`} />
             <ThemeToggle />
+            <Link href="https://ip.im" target="_blank" className="mr-2">
+              <Button variant={`outline`} size={`icon`} tapEnabled>
+                <img 
+                  src="https://favicon.is/ip.im" 
+                  alt="IP Lookup" 
+                  className="w-5 h-5" 
+                  title="IP address lookup"
+                />
+              </Button>
+            </Link>
+
+            {/* DNS lookup button */}
+            <Link href="https://dns.is" target="_blank" className="mr-2">
+              <Button variant={`outline`} size={`icon`} tapEnabled>
+                <img 
+                  src="https://favicon.is/dns.is" 
+                  alt="DNS Lookup" 
+                  className="w-5 h-5" 
+                  title="DNS lookup"
+                />
+              </Button>
+            </Link>
             <Link
               href={`https://github.com/zmh-program/next-whois-ui`}
               target={`_blank`}
