@@ -171,12 +171,19 @@ function ResultTable({ result, target }: ResultTableProps) {
               }
             }}
           >
-            {status.url !== "expand" && (
+          {status.url ? (
+            status.url !== "expand" && (
               <Icon
-                icon={status.url ? <Link2 /> : <Unlink2 />}
+                icon={<Link2 />}
                 className={`w-3 h-3 mr-1 shrink-0 text-muted-foreground transition group-hover:text-primary`}
               />
-            )}
+            )
+          ) : (
+            <Icon
+              icon={<Unlink2 />}
+              className={`w-3 h-3 mr-1 shrink-0 text-muted-foreground transition group-hover:text-primary`}
+            />
+          )}
             {status.status}
           </Link>
         ))}
