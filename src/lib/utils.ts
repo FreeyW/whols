@@ -88,25 +88,46 @@ export function toSearchURI(query: string) {
   return q ? `/${encodeURIComponent(q)}` : "/";
 }
 
-export function toReadableISODate(date: string | null) {
-  if (!date) return "Unknown";
+export function toReadableISODate(date: string | null): { dateTime: string; timeZone: string } {
+  if (!date) return { dateTime: "Unknown", timeZone: "" };
   
   try {
+    // 从ISO字符串创建Date对象
     const dateObj = new Date(date);
     
-    const localDate = dateObj.toLocaleString(undefined, {
+    // 单独格式化日期部分
+    const datePart = dateObj.toLocaleDateString(undefined, {
       year: 'numeric',
       month: 'numeric',
-      day: 'numeric',
+      day: 'numeric'
+    });
+    
+    // 单独格式化时间部分
+    const timePart = dateObj.toLocaleTimeString(undefined, {
       hour: 'numeric',
       minute: 'numeric',
       second: 'numeric',
-      timeZoneName: 'short' 
+      hour12: false // 使用24小时制
     });
     
-    return localDate;
+    // 获取时区偏移量
+    const timeZoneOffset = dateObj.getTimezoneOffset();
+    const timeZoneSign = timeZoneOffset <= 0 ? '+' : '-';
+    const timeZoneHours = Math.abs(Math.floor(timeZoneOffset / 60));
+    const timeZoneMinutes = Math.abs(timeZoneOffset % 60);
+    const timeZone = `GMT${timeZoneSign}${timeZoneHours.toString().padStart(2, '0')}${timeZoneMinutes > 0 ? ':' + timeZoneMinutes.toString().padStart(2, '0') : ''}`;
+    
+    // 返回日期时间和时区分开
+    return {
+      dateTime: `${datePart} ${timePart}`,
+      timeZone: timeZone
+    };
   } catch (e) {
-    return date.replace("T", " ").replace("Z", "").replace(".000", "");
+    // 如果解析出错，返回原始格式
+    return {
+      dateTime: date.replace("T", " ").replace("Z", "").replace(".000", ""),
+      timeZone: ""
+    };
   }
 }
 
