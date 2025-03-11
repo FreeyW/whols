@@ -102,6 +102,22 @@ export default function App({ Component, pageProps }: AppProps) {
                 </svg>
               </Button>
             </Link>
+                    <div className={cn(`relative w-full h-full`, inter.className)}>
+          <div
+            className={cn(
+              `absolute w-full p-2 px-4 bg-background border-b select-none flex flex-row items-center z-50 space-x-2`,
+            )}
+          >
+            <img
+              src={`/icons/icon-192x192.png`}
+              alt={``}
+              className={`cursor-pointer w-10 h-10 p-1 shadow-sm bg-black border rounded-md transition hover:shadow`}
+              onClick={() => {
+                install(true);
+              }}
+            />
+            <div className={`grow`} />
+            <ThemeToggle />
           </div>
           <Component {...pageProps} />
         </div>
