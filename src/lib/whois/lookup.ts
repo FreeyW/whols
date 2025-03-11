@@ -7,9 +7,42 @@ import { getJsonRedisValue, setJsonRedisValue } from "@/lib/server/redis";
 
 export function getLookupOptions(domain: string) {
   const isDomain = !!extractDomain(domain);
-  return {
+  const options: any = {
     follow: isDomain ? MAX_WHOIS_FOLLOW : MAX_IP_WHOIS_FOLLOW,
   };
+  
+  // 添加自定义WHOIS服务器映射
+  if (domain.endsWith('.ing')) {
+    options.server = 'whois.nic.google';
+  }
+  else if (domain.endsWith('.now')) {
+    options.server = 'whois.nic.amazon';
+  }
+  else if (domain.endsWith('.page')) {
+    options.server = 'whois.nic.google';
+  }
+  else if (domain.endsWith('.new')) {
+    options.server = 'whois.nic.google';
+  }
+  // Amazon的域名
+  else if (domain.endsWith('.aws')) {
+    options.server = 'whois.nic.aws';
+  }
+  else if (domain.endsWith('.buy')) {
+    options.server = 'whois.nic.amazon';
+  }
+  else if (domain.endsWith('.book')) {
+    options.server = 'whois.nic.amazon';
+  }
+  else if (domain.endsWith('.bot')) {
+    options.server = 'whois.nic.amazon';
+  }
+  // 其他常见新gTLD
+  else if (domain.endsWith('.shop')) {
+    options.server = 'whois.nic.shop';
+  }
+  
+  return options;
 }
 
 export function getLookupRawWhois(
