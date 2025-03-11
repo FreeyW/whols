@@ -12,8 +12,14 @@ function analyzeDomainStatus(status: string, isEppStatus: boolean = false): Doma
 
   url.startsWith("(") && url.endsWith(")") && (url = url.slice(1, -1));
   
-  // 如果是EPP状态，或者状态代码符合EPP格式(如clientTransferProhibited)，生成ICANN链接
-  if (isEppStatus || /^(client|server)[A-Z][a-z]+[A-Z][a-z]+/.test(statusCode)) {
+  if (isEppStatus) {
+    return {
+      status: statusCode,
+      url: `https://icann.org/epp#${statusCode}`,
+    };
+  }
+  
+  if (/^(client|server)[A-Z][a-z]+[A-Z][a-z]+/.test(statusCode)) {
     return {
       status: statusCode,
       url: `https://icann.org/epp#${statusCode}`,
@@ -272,12 +278,25 @@ export function analyzeWhois(data: string): WhoisAnalyzeResult {
     }
   }
 
-  let newStatus: DomainStatusProps[] = [];
-  for (let i = 0; i < result.status.length; i++) {
-    const status = result.status[i];
-    if (newStatus.find((item) => item.status === status.status)) continue;
-    newStatus.push(status);
+let newStatus: DomainStatusProps[] = [];
+  const addedStatusCodes = new Set<string>();
+  
+  const eppStatuses = result.status.filter(item => item.url.includes("icann.org/epp"));
+  for (const status of eppStatuses) {
+    if (!addedStatusCodes.has(status.status.toLowerCase())) {
+      newStatus.push(status);
+      addedStatusCodes.add(status.status.toLowerCase());
+    }
   }
+  
+  const nonEppStatuses = result.status.filter(item => !item.url.includes("icann.org/epp"));
+  for (const status of nonEppStatuses) {
+    if (!addedStatusCodes.has(status.status.toLowerCase())) {
+      newStatus.push(status);
+      addedStatusCodes.add(status.status.toLowerCase());
+    }
+  }
+  
   result.status = newStatus;
 
   return result;
