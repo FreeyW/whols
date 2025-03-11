@@ -41,11 +41,13 @@ export default function App({ Component, pageProps }: AppProps) {
         enableSystem
         disableTransitionOnChange
       >
+        {/* 已禁用PWA安装器
         <PWAInstaller
           manifest-url="/manifest.json"
           name="W.is Whois UI"
           description="🧪 Your Next Generation Of Whois Lookup Tool With Modern UI. Support Domain/IPv4/IPv6/ASN/CIDR Whois Lookup And Powerful Features."
         />
+        */}
         <div className={cn(`relative w-full h-full`, inter.className)}>
           <div
             className={cn(
