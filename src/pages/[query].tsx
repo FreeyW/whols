@@ -198,14 +198,53 @@ function ResultTable({ result, target }: ResultTableProps) {
     result && (
       <table className={`w-full text-base mb-4 whitespace-pre-wrap`}>
         <tbody>
-          <Row name={`Name`} value={result.domain || target.toUpperCase()} likeLink={true}>
-            {result.status?.some(status => status.status.toLowerCase().includes("add") && status.status.toLowerCase().includes("period")) && 
-              <InfoText content="New registration" className="bg-green-500 text-white border-green-600" />}
-            {result.status?.some(status => status.status.toLowerCase().includes("pending") && status.status.toLowerCase().includes("delete")) && 
-              <InfoText content="Waiting for deletion" className="bg-red-500 text-white border-red-600" />}
-            {result.status?.some(status => status.status.toLowerCase().includes("pending") && status.status.toLowerCase().includes("transfer")) && 
-              <InfoText content="Transfer in progress" className="bg-yellow-500 text-white border-yellow-600" />}
-          </Row>
+        <Row name={`Name`} value={result.domain || target.toUpperCase()} likeLink={true}>
+          {result.status?.some(status => status.status.toLowerCase().includes("add") && status.status.toLowerCase().includes("period")) && 
+            <InfoText content="New registration" className="bg-green-500 text-white border-green-600" />}
+  
+          {/* 新添加的基于注册时间的"新注册"标签 */}
+          {result.creationDate && result.creationDate !== "Unknown" && 
+            (() => {
+              // 检查是否是30天内新注册的域名
+              try {
+                const creationDate = new Date(result.creationDate);
+                const currentDate = new Date();
+                const daysDiff = Math.floor((currentDate.getTime() - creationDate.getTime()) / (1000 * 60 * 60 * 24));
+                if (daysDiff <= 30 && !result.status?.some(status => status.status.toLowerCase().includes("add") && status.status.toLowerCase().includes("period"))) {
+                  return <InfoText content="New registration" className="bg-green-500 text-white border-green-600" />;
+                }
+              } catch (e) {
+                // 日期解析错误，忽略
+                console.error("Date parsing error:", e);
+              }
+              return null;
+            })()
+          }
+  
+          {/* 新添加的"即将到期"标签 */}
+          {result.expirationDate && result.expirationDate !== "Unknown" &&
+            (() => {
+              // 检查是否即将到期（30天内）
+              try {
+                const expirationDate = new Date(result.expirationDate);
+                const currentDate = new Date();
+                const daysDiff = Math.floor((expirationDate.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24));
+                if (daysDiff <= 30 && daysDiff >= 0) {
+                  return <InfoText content="Upcoming expiration" className="bg-yellow-500 text-white border-yellow-600" />;
+                }
+              } catch (e) {
+                // 日期解析错误，忽略
+                console.error("Date parsing error:", e);
+              }
+              return null;
+            })()
+          }
+  
+          {result.status?.some(status => status.status.toLowerCase().includes("pending") && status.status.toLowerCase().includes("delete")) && 
+            <InfoText content="Waiting for deletion" className="bg-red-500 text-white border-red-600" />}
+          {result.status?.some(status => status.status.toLowerCase().includes("pending") && status.status.toLowerCase().includes("transfer")) && 
+            <InfoText content="Transfer in progress" className="bg-yellow-500 text-white border-yellow-600" />}
+        </Row>
           <Row name={`Status`} value={<StatusComp />} />
           <Row
             name={`Registrar`}
