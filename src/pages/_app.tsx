@@ -33,7 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="keywords" content={siteKeywords} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script defer data-domain="w.is" src="https://stat.re/js/script.js"></script>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Head>
       <Toaster />
       <ThemeProvider
